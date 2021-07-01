@@ -24,7 +24,6 @@ def parse_file(filename):
     content[3] = content[3].split("=")[1]
     content = content[:-1]
     # comparing with current build version
-    content.append(
-        0) if CURR_VERSION == content[2] else content.append(1)
+    content.append(1) if CURR_VERSION == content[1] else content.append(0)
     attributes += content
     return attributes
