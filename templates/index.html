@@ -10,6 +10,7 @@
         integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
         integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
@@ -18,18 +19,19 @@
 
 </head>
 <body>
-    <div class="title">
-        <h1>Dashboard - Version Report</h1> 
-    </div>
+    <nav class="navbar navbar-dark bg-dark title">
+        <img class="logo-img", src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/1024px-Deutsche_Bank_logo_without_wordmark.svg.png">
+        <h1 class="heading" style="color: white;">Dashboard - Deployment Version Reporting</h1>
+    </nav>
 
     
-    <div class="card-container">
-        <div class="col-md-10">
+    <div class="container pt-5">
+        <div class="col-md-12">
             <div class="row ">
                 <div class="col-xl-4 col-lg-6">
                     <div class="card l-bg-blue-dark">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                            <div class="card-icon card-icon-large"><i class="fas fa-server"></i></div>
                             <div class="mb-4">
                                 <h5 class="card-title mb-0">Total Virtual Machines</h5>
                             </div>
@@ -53,14 +55,14 @@
                 <div class="col-xl-4 col-lg-6">
                     <div class="card l-bg-green-dark">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                            <div class="card-icon card-icon-large"><i class="fas fa-laptop"></i></div>
                             <div class="mb-4">
                                 <h5 class="card-title mb-0">Machines With Latest Version </h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
                                     <h2 class="d-flex align-items-center mb-0">
-                                        578
+                                        {{successful}}
                                     </h2>
                                 </div>
                             </div>
@@ -72,22 +74,22 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6">
-                    <div class="card l-bg-orange-dark">
+                    <div class="card l-bg-orange-dark" style="height: 148px;">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                            <div class="card-icon card-icon-large"><i class="far fa-clock"></i></div>
                             <div class="mb-4">
                                 <h5 class="card-title mb-0">Latest Build Timestamp</h5>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 class="d-flex align-items-center mb-0">
+                                    <h6 class="d-flex align-items-center mb-0" style="font-size: 1.14rem;">
                                         {{latest_build}}
-                                    </h2>
+                                    </h6>
                                 </div>
                             </div>
-                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
-                                <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                            <div class="progress mt-4 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25"
+                                    aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
                             </div>
                         </div>
                     </div>
@@ -96,11 +98,93 @@
         </div>
     </div>
 
-    {%for version in version_info%}
-        <h3>{{version}}</h3>
-        <p>{{version_info[version]}}</p>
-    {%endfor%}
+    <br>
+    <hr class="style-two    ">
+    <br>
+    <!-- cards for virtual machines -->
+    <div class="container">
+        <div class="row">
+        {%for version in version_info%}
+            <div class="col-lg-4">
+                <div class="body-card body-card-margin">
+                    <div class="body-card-header no-border">
+                    </div>
+                    <div class="body-card-body pt-0">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                {%if version_info[version][-1]==1%}
+                                <div class="widget-49-date-primary" style="background-color:lightgreen;">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </div>
+                                {%else%}
+                                <div class="widget-49-date-primary" style="background-color:indianred;">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </div>
+                                {%endif%}
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-pro-title">{{version}}</span>
+                                    <span class="widget-49-meeting-time">IP Address : {{version_info[version][1]}}</span>
+                                </div>
+                            </div>
+                            <ul class="widget-49-meeting-points">
+                                <li class="widget-49-meeting-item"><span>Build Timestamp :<b>{{version_info[version][2]}}</b> </span></li>
+                                <li class="widget-49-meeting-item"><span>Version :<b>{{version_info[version][3]}}</b></span></li>
+                                <li class="widget-49-meeting-item"><span>Group ID : <b>{{version_info[version][4]}}</b></span></li>
+                                <li class="widget-49-meeting-item"><span>Artifact ID : <b>{{version_info[version][5]}}</b></span></li>
+                            </ul>
+                            <div class="widget-49-meeting-action">
+                                <a href="#" class="btn btn-sm btn-flash-border-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+        </div>
+    </div>
 
-    <h2>Total Virtual Machines : {{version_info|length}}</h2>
+    <!-- footer -->
+    <div class="footer-dark" style="margin-top: 200px;">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-sm-6 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Web design</a></li>
+                            <li><a href="#">Development</a></li>
+                            <li><a href="#">Hosting</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div> -->
+                    <div class="col-md-6 item text">
+                        <h3>About the Version Reporting Tool</h3>
+                        <p>Deutsche Bank is a leading global investment bank with a strong and profitable private clients franchise. A
+                            leader in
+                            Germany and Europe, the Bank is continuously growing in North America, Asia and key emerging markets. With more
+                            than
+                            78,000 employees in over 70 countries worldwide, Deutsche Bank offers unparalleled financial services throughout
+                            the
+                            world.</p>
+                    </div>
+                    <div class="col-md-6 item text">
+                        <h3>Deutsche Bank</h3>
+                        <p>Deutsche Bank is a leading global investment bank with a strong and profitable private clients franchise. A leader in
+                        Germany and Europe, the Bank is continuously growing in North America, Asia and key emerging markets. With more than
+                        78,000 employees in over 70 countries worldwide, Deutsche Bank offers unparalleled financial services throughout the
+                        world.</p>
+                    </div>
+                
+                <p class="copyright"> © Deutsche Bank Internship Program 2021</p>
+            </div>
+            </footer>
+        </div>
 </body>
 </html>
