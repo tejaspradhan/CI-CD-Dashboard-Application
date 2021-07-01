@@ -22,7 +22,8 @@ def dashboard():
         './pipeline/info') if os.path.isfile(os.path.join('./pipeline/info', f))]
     for name in filenames:
         info[name[:name.find('_')]] = parse_file(name)
-    return render_template("index.html", version_info=info)
+    latest = info[filenames[0][:filenames[0].find('_')]][2]
+    return render_template("index.html", version_info=info, percent=str((1/len(info))*100)+"%", latest_build=latest)
 
 
 if __name__ == '__main__':
