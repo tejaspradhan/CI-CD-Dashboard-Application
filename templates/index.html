@@ -15,6 +15,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/1024px-Deutsche_Bank_logo_without_wordmark.svg.png"/>
     <title>Dashboard</title>
 
 </head>
@@ -23,21 +24,41 @@
         <img class="logo-img", src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/1024px-Deutsche_Bank_logo_without_wordmark.svg.png">
         <h1 class="heading" style="color: white;">Dashboard - Deployment Version Reporting</h1>
     </nav>
-
-    <div class="container">
-        <form action="/report" method="post">
-            <select class="form-control" id="application" name="app">
-                {% for x in pipelines %}
-                    <option>{{ x }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" >
-        </form>
-    </div>
     
     {% if(text) %}
-        <div><p>{{ text }}</p></div>
+        <div class="mainpage">
+            <div class="container hometext">
+                <h2>Welcome !</h2>
+                <br>
+                <h3>{{ text }}</h3>
+            </div>
+            <div class="container formcontainer col-lg-6">
+                <form class="py-2" action="/report" method="post">
+                    <div>
+                        <select class="" id="application" name="app">
+                            {% for x in pipelines %}
+                                <option class="opt">{{ x }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark btn-lg mt-4">View Status</button>
+                </form>
+            </div>
+        </div>
     {% else %}
+    <div class="page">
+    <div class="container formcontainer col-lg-6">
+        <form class="py-2" action="/report" method="post">
+            <div>
+                <select class="" id="application" name="app">
+                    {% for x in pipelines %}
+                        <option class="opt">{{ x }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-outline-dark btn-lg mt-4">View Status</button>
+        </form>
+    </div>
     <div class="container pt-5">
         <div class="col-md-12">
             <div class="row ">
@@ -145,9 +166,9 @@
                                 <li class="widget-49-meeting-item"><span>Group ID : <b>{{version_info[version][4]}}</b></span></li>
                                 <li class="widget-49-meeting-item"><span>Artifact ID : <b>{{version_info[version][5]}}</b></span></li>
                             </ul>
-                            <div class="widget-49-meeting-action">
+                            <!-- <div class="widget-49-meeting-action">
                                 <a href="#" class="btn btn-sm btn-flash-border-primary">View More</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -155,10 +176,11 @@
         {%endfor%}
         </div>
     </div>
+    </div>
     {% endif %}
 
     <!-- footer -->
-    <div class="footer-dark" style="margin-top: 200px;">
+    <div class="footer-dark">
         <footer>
             <div class="container">
                 <div class="row">
