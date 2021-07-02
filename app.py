@@ -33,7 +33,7 @@ def fetch():
         if(info[name[:name.find('-')]][-1] == 1):
             successful += 1
     latest = info[filenames[0][:filenames[0].find('-')]][2]
-    return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES)
+    return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES, appname=appname)
 
 
 

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Arvo&family=Lato:wght@400;700&family=Merriweather&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
 
 body {
   margin: 0;
@@ -603,4 +603,10 @@ select
 .card:hover{
   transform: scale(1.05) !important;
   transition: ease-in-out 0.3s !important;
+}
+
+.appname
+{
+  font-family: 'Poppins';
+  text-align: center;
 }

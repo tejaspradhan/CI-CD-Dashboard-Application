@@ -36,6 +36,9 @@
                 <form class="py-2" action="/report" method="post">
                     <div>
                         <select class="" id="application" name="app">
+                            <option value="none" selected disabled hidden>
+                                Select an Application
+                            </option>
                             {% for x in pipelines %}
                                 <option class="opt">{{ x }}</option>
                             {% endfor %}
@@ -52,12 +55,19 @@
             <div>
                 <select class="" id="application" name="app">
                     {% for x in pipelines %}
+                        {% if(x == appname) %}
+                        <option class="opt" selected>{{ x }}</option>
+                        {% else %}
                         <option class="opt">{{ x }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </div>
             <button type="submit" class="btn btn-outline-dark btn-lg mt-4">View Status</button>
         </form>
+    </div>
+    <div class="appname pt-5">
+        <h4>Application Name : <b>{{ appname }}</b></h4>
     </div>
     <div class="container pt-5">
         <div class="col-md-12">
