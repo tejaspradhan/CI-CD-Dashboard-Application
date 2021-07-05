@@ -24,6 +24,7 @@ def parse_file(filename, appname):
     content = content[:-1]
     # comparing with current build version
     content.append(1) if CURR_VERSION == content[1] else content.append(0)
+    # print(appname, CURR_VERSION, content[1])
     attributes += content
-    print(attributes)
+    # print(attributes)
     return attributes
