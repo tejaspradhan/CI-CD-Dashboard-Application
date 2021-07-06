@@ -8,12 +8,9 @@ PIPELINES = []
 
 def pipelines():
     global PIPELINES
-    PIPELINES = [f for f in os.listdir('../')]
+    PIPELINES = [f for f in os.listdir('../') if(f.find("tmp")==-1 and f.find("@libs")==-1)]
     # print(PIPELINES)
     PIPELINES.remove("CI-CD-Dashboard-Application")
-    for x in PIPELINES:
-        if(x.endswith("@tmp")):
-            PIPELINES.remove(x)
     # print(PIPELINES)
 
 @app.route('/')
