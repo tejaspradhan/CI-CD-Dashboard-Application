@@ -12,6 +12,14 @@ def pipelines():
     # print(PIPELINES)
     PIPELINES.remove("CI-CD-Dashboard-Application")
     # print(PIPELINES)
+    for x in PIPELINES:
+        if(os.path.isdir('../'+x+'/info')):
+            dir = os.listdir('../'+x+'/info')
+            if(len(dir)==0):
+                PIPELINES.remove(x)
+        else:
+            PIPELINES.remove(x)
+        
 
 @app.route('/')
 def dashboard():
@@ -32,7 +40,15 @@ def fetch():
     latest = info[filenames[0][:filenames[0].find('-')]][2]
     return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES, appname=appname)
 
+@app.route('/temp',methods=['GET','POST'])
+def healthcheck():
+    #return str(requests.get("http://192.168.1.8:8090/actuator/health"))
+    response = urllib.request.urlopen("http://192.168.1.8:8090/actuator/health")
+    data = response.read()
+    data= json.loads(data)
+    print(data['status'])
 
+    return data
 
 if __name__ == '__main__':
     pipelines()

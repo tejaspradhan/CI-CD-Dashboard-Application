@@ -21,8 +21,8 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark title">
-        <img class="logo-img", src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/1024px-Deutsche_Bank_logo_without_wordmark.svg.png">
-        <h1 class="heading" style="color: white;">Dashboard - Deployment Version Reporting</h1>
+        <a href="http://127.0.0.1:5000/"><img class="logo-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/1024px-Deutsche_Bank_logo_without_wordmark.svg.png"></a>
+        <h1 class="heading" style="color: white;">Deployment Version Reporting</h1>
     </nav>
     
     {% if(text) %}
@@ -176,9 +176,9 @@
                                 <li class="widget-49-meeting-item"><span>Group ID : <b>{{version_info[version][4]}}</b></span></li>
                                 <li class="widget-49-meeting-item"><span>Artifact ID : <b>{{version_info[version][5]}}</b></span></li>
                             </ul>
-                            <!-- <div class="widget-49-meeting-action">
-                                <a href="#" class="btn btn-sm btn-flash-border-primary">View More</a>
-                            </div> -->
+                            <div class="widget-49-meeting-action">
+                                <a href="http://localhost:9090/applications/{{ appname }}" class="btn btn-sm btn-flash-border-primary">View More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
