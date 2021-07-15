@@ -589,10 +589,15 @@ select
 
 .mainpage
 {
-  background: url("https://lh3.googleusercontent.com/proxy/cKzoH8qSJQi0jorLwx2uttB89BviFux2sZz6ZCqAEPqno13iFjNQp_sBP0MkHE-NmaZnTH_a0wIZis2s3uzEwTabAE3laD5axTX-giNYSSvBI_h29JGCudfXzy3gPFsbixNBYJhVYORUQrA6r7-hMt2O3KvDYmMchKOnzG1_Ow2RnGqHeCNloq3O7yPXMB75HX--JH3Vmdhp98jSWY_g6Gg");
+  background: url("https://media.istockphoto.com/photos/blank-white-gradient-background-with-product-display-white-backdrop-picture-id1211155798?k=6&m=1211155798&s=170667a&w=0&h=gYp9VwdRGeC73pfzr42c9s2U1pnekl8z295wJ_q8lWU=");
   background-size: cover;
   height: 35rem;
 }
+
+/* .healthpage
+{
+  background: url("https://digitalsynopsis.com/wp-content/uploads/2017/02/beautiful-color-gradients-backgrounds-166-deep-relief.png");
+} */
 
 .page
 {
@@ -609,4 +614,19 @@ select
 {
   font-family: 'Poppins';
   text-align: center;
+}
+
+.allapps
+{
+  text-align: center;
+}
+
+.ustatus
+{
+  background-color: rgba(0, 255, 0, 0.2) !important;
+}
+
+.dstatus
+{
+  background-color: rgba(255, 0, 0, 0.2) !important;
 }

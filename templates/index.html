@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
@@ -14,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href={{ url_for('static', filename='styles.css') }}>
     <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Deutsche_Bank_logo_without_wordmark.svg/1024px-Deutsche_Bank_logo_without_wordmark.svg.png"/>
     <title>Dashboard</title>
@@ -35,8 +37,8 @@
             <div class="container formcontainer col-lg-6">
                 <form class="py-2" action="/report" method="post">
                     <div>
-                        <select class="" id="application" name="app">
-                            <option value="none" selected disabled hidden>
+                        <select class="" id="application" name="app" required>
+                            <option value="" hidden>
                                 Select an Application
                             </option>
                             {% for x in pipelines %}
@@ -46,6 +48,51 @@
                     </div>
                     <button type="submit" class="btn btn-outline-dark btn-lg mt-4">View Status</button>
                 </form>
+            </div>
+            <div class="container">
+                <!-- Button trigger modal -->
+                <hr>
+                <div class=" allapps">
+                    <button type="button" class="btn btn-dark btn-lg mt-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Cron Job Health Status
+                    </button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">All VM Status</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th>Virtual Machine Address</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in all_status %}
+                                    <tr>
+                                        <td>{{ i[0] }}</td>
+                                        {% if(i[1]=="UP") %}
+                                        <td class="ustatus" >{{ i[1] }}</td>
+                                        {% else %}
+                                        <td class="dstatus" >{{ i[1] }}</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     {% else %}
@@ -67,7 +114,7 @@
         </form>
     </div>
     <div class="appname pt-5">
-        <h4>Application Name : <b>{{ appname }}</b></h4>
+        <h4>Application Name : <b>{{ appname }}</b> <a href="http://localhost:9090/applications/{{ appname }}" target="_blank" class="btn btn-outline-dark" ><i class="fas fa-external-link-alt fas-1" aria-hidden="true"></i></a></h4>
     </div>
     <div class="container pt-5">
         <div class="col-md-12">
@@ -177,7 +224,10 @@
                                 <li class="widget-49-meeting-item"><span>Artifact ID : <b>{{version_info[version][5]}}</b></span></li>
                             </ul>
                             <div class="widget-49-meeting-action">
-                                <a href="http://localhost:9090/applications/{{ appname }}" class="btn btn-sm btn-flash-border-primary">View More</a>
+                                <form id="status" action="/health" method="POST">
+                                    <input name="ip" value="{{version_info[version][1]}}" hidden />
+                                    <button type="submit" class="btn btn-sm btn-flash-border-primary">View More</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -194,22 +244,6 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <!-- <div class="col-sm-6 col-md-3 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Web design</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Hosting</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div> -->
                     <div class="col-md-6 item text">
                         <h3>About the Version Reporting Tool</h3>
                         <p>This tool is basically used to check the post deployment status for all the applications deployed on different virtual machines.
@@ -224,10 +258,10 @@
                         78,000 employees in over 70 countries worldwide, Deutsche Bank offers unparalleled financial services throughout the
                         world.</p>
                     </div>
-                
                 <p class="copyright"> © Deutsche Bank Internship Program 2021</p>
             </div>
             </footer>
         </div>
 </body>
+
 </html>
