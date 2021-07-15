@@ -56,11 +56,12 @@ def fetch():
             '../'+ appname +'/info') if os.path.isfile(os.path.join('../'+ appname +'/info', f))]
         for name in filenames:
             info[name[:name.find('-')]] = helper.parse_file(name, appname)
-            if(info[name[:name.find('-')]][-1] == 1):
+            if(info[name[:name.find('-')]][-2] == 1):
                 successful += 1
         latest = info[filenames[0][:filenames[0].find('-')]][2]
         return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES, appname=appname)
-    except:
+    except Exception as e:
+        print(e)
         return render_template("error.html", status=500)
 
 @app.route('/health',methods=['GET','POST'])

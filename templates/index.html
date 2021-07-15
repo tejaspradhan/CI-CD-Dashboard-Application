@@ -203,7 +203,7 @@
                     <div class="body-card-body pt-0">
                         <div class="widget-49">
                             <div class="widget-49-title-wrapper">
-                                {%if version_info[version][-1]==1%}
+                                {%if version_info[version][-2]==1%}
                                 <div class="widget-49-date-primary" style="background-color:lightgreen;">
                                     <i class="fa fa-check" aria-hidden="true"></i>
                                 </div>
@@ -225,6 +225,11 @@
                             </ul>
                             <div class="widget-49-meeting-action">
                                 <form id="status" action="/health" method="POST">
+                                    {% if version_info[version][-1]=="UP" %}
+                                    <span class="badge bg-success p-2">Service is {{version_info[version][-1]}}</span>
+                                    {% else %}
+                                    <span class="badge bg-danger p-2">Service is {{version_info[version][-1]}}</span>
+                                    {% endif %}
                                     <input name="ip" value="{{version_info[version][1]}}" hidden />
                                     <button type="submit" class="btn btn-sm btn-flash-border-primary">View More</button>
                                 </form>
