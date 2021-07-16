@@ -1,5 +1,5 @@
 import helper
-from flask import Flask, request, render_template, url_for
+from flask import *
 import urllib
 import os
 import json
@@ -7,6 +7,7 @@ from json2html import *
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.secret_key = "Yash"
 
 PIPELINES = []
 ALL_VM_STATUS = []
@@ -59,6 +60,7 @@ def fetch():
             if(info[name[:name.find('-')]][-2] == 1):
                 successful += 1
         latest = info[filenames[0][:filenames[0].find('-')]][2]
+        session['appname'] = appname
         return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES, appname=appname)
     except Exception as e:
         print(e)
@@ -67,14 +69,17 @@ def fetch():
 @app.route('/health',methods=['GET','POST'])
 def healthcheck():
     try:
+        PORT = helper.get_port(session['appname'])
         ip = request.form['ip']
-        response = urllib.request.urlopen("http://"+ip+":8090/actuator/health")
+        print("http://"+ip+":"+PORT+"/actuator/health")
+        response = urllib.request.urlopen("http://"+ip+":"+PORT+"/actuator/health")
         data = response.read()
         data = json.loads(data)
         code = json2html.convert(json = data, table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\"")
         # print(code)
         return render_template("health.html", data=data, code=code, ip=ip)
-    except:
+    except Exception as e:
+        print(e)
         return render_template("error.html", status=500)
 
 @app.route('/error')
