@@ -241,6 +241,73 @@
         {%endfor%}
         </div>
     </div>
+
+    {% if dbinfo|length > 0 %}
+
+    <br>
+    <hr class="style-two">
+    <br>
+
+    <div class="container">
+        <div class="body-card body-card-margin dbinfo " style="text-align: center;">
+            <div class="body-card-header no-border">
+            </div>
+            <div class="body-card-body pt-0">
+                <div class="widget-49">
+                    <div class="widget-49-title-wrapper">
+                        {% if(dbinfo[-1]) %}
+                        <div class="widget-49-date-primary" style="background-color:lightgreen;">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </div>
+                        {% else %}
+                        <div class="widget-49-date-primary" style="background-color:indianred;">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                        {% endif %}
+                        <div class="appname px-5" style="width: 100%; text-align: center;">
+                            <h2>Latest Database ChangeSet Information</h2>
+                        </div>
+                    </div>
+                    <div class="py-5">
+                        <!-- {{dbinfo}} -->
+                        <table class="table table-striped table-responsive">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>{{dbinfo[1]}}</td>
+                                </tr>
+                                <tr>
+                                    <td>AUTHOR</td>
+                                    <td>{{dbinfo[0]}}</td>
+                                </tr>
+                                <tr>
+                                    <td>DATE EXECUTED</td>
+                                    <td>{{dbinfo[2]}}</td>
+                                </tr>
+                                <tr>
+                                    <td>EXEC TYPE</td>
+                                    <td>{{dbinfo[3]}}</td>
+                                </tr>
+                                <tr>
+                                    <td>DEPLOYMENT ID</td>
+                                    <td>{{dbinfo[4]}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
     </div>
     {% endif %}
 

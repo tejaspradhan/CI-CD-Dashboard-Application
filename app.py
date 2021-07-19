@@ -47,10 +47,14 @@ def dashboard():
     except:
         return render_template("error.html", status=500)
 
-@app.route('/report', methods=['POST'])
+@app.route('/report', methods=['POST', 'GET'])
 def fetch():
     try:
-        appname = request.form['app']
+        appname = ""
+        if request.method=="GET":
+            appname = session['appname']
+        else:
+            appname = request.form['app']
         successful = 0
         info = dict()
         filenames = [f for f in os.listdir(
@@ -61,7 +65,11 @@ def fetch():
                 successful += 1
         latest = info[filenames[0][:filenames[0].find('-')]][2]
         session['appname'] = appname
-        return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES, appname=appname)
+        
+        dbinfo = []
+        dbinfo = helper.get_dbinfo(appname)
+
+        return render_template("index.html", version_info=info, percent=str((successful/len(info))*100)+"%", latest_build=latest, successful=successful, pipelines=PIPELINES, appname=appname, dbinfo=dbinfo)
     except Exception as e:
         print(e)
         return render_template("error.html", status=500)
@@ -71,7 +79,6 @@ def healthcheck():
     try:
         PORT = helper.get_port(session['appname'])
         ip = request.form['ip']
-        print("http://"+ip+":"+PORT+"/actuator/health")
         response = urllib.request.urlopen("http://"+ip+":"+PORT+"/actuator/health")
         data = response.read()
         data = json.loads(data)

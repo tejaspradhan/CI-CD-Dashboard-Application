@@ -630,3 +630,8 @@ select
 {
   background-color: rgba(255, 0, 0, 0.2) !important;
 }
+
+.dbinfo:hover{
+  transform: scale(1.02) !important;
+  transition: ease-in-out 0.3s !important;
+}

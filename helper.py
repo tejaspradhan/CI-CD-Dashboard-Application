@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import urllib
 import json
+import os
 from json2html import *
 
 def get_latest_version(appname):
@@ -21,6 +22,31 @@ def get_port(appname):
         d[key] = val
     return d['server.port']
 
+
+def get_dbinfo(appname):
+    fname = "../"+appname+"/dbcheck.txt"
+    dbinfo = []
+    if(os.path.isfile(fname)):
+        f = open(fname, 'r')
+        dbinfo = f.read().split("\n")[1]
+
+        filename = [f for f in os.listdir('../'+ appname +'/src/main/resources/') if os.path.isfile(os.path.join('../'+ appname +'/src/main/resources/', f)) and f.endswith(".sql")]
+        f = open('../'+appname+'/src/main/resources/'+filename[0], 'r')
+        changelog = f.read().split('\n')
+        changeinfo = ""
+        for x in changelog:
+            if(x.find("changeset")!=-1):
+                author, id = x.split(" ")[1].split(":")
+                break
+        
+        dbinfo = dbinfo.split("\t")
+        if(dbinfo[0]==author and dbinfo[1]==id and dbinfo[3]=="EXECUTED"):
+            dbinfo.append(True)
+        else:
+            dbinfo.append(False)
+    
+    return dbinfo
+    
 
 def parse_file(filename, appname):
     CURR_VERSION = get_latest_version(appname)
