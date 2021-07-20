@@ -50,10 +50,6 @@ Project is: _In progress_
 <br>
 <br>
 
-<a href="https://github.com/tejaspradhan/CI-CD-Dashboard-Application/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=tejaspradhan/CI-CD-Dashboard-Application"/>
-</a>
-<br>
 
 <!-- Optional -->
 <!-- ## License -->
