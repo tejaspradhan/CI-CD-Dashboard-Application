@@ -36,7 +36,7 @@
 
 
 ## Usage
-
+- Start the dashboard by `python app.py` 
 
 
 ## Project Status
