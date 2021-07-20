@@ -2,3 +2,4 @@ flask
 urllib
 json
 json2html
+xml
