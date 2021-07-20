@@ -1,6 +1,6 @@
 # CI-CD Dashboard Application
 
-> This is a flask based dashboard application for version and information checking of deployments made via jenkins pipelines. It is used as a maintanence tool for CI/CD pipeline based applications 
+> This is a flask based dashboard application for version and information checking of deployments made via jenkins pipelines. It is used as a maintanence tool for CI/CD pipelines specifically for java based applications 
 <!-- > Live demo [_here_](https://www.example.com). If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
@@ -25,10 +25,11 @@
 
 
 ## Technologies Used
-- Groovy Scripts - For Pipeline
-- Shell Scripts - For ssh actions
-- Maven
-- Liquibase
+- HTML, CSS, Bootstrap - for the front end
+- Flask - for developing the backend of the dashboard
+- Jenkins - for implementing CI/CD pipelines
+- Liquibase - for database SCM
+- Spring boot admin
 
 
 ## Features
