@@ -29,7 +29,7 @@
 - Flask - for developing the backend of the dashboard
 - Jenkins - for implementing CI/CD pipelines
 - Liquibase - for database SCM
-- Spring boot admin
+- Spring boot admin - for health and sanity check information
 
 
 ## Features
