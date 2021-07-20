@@ -52,7 +52,7 @@ Project is: _In progress_
 
 <a href="https://github.com/tejaspradhan/CI-CD-Dashboard-Application/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=tejaspradhan/CI-CD-Dashboard-Application"/>
-  <img class="d-block avatar-user" src="https://avatars.githubusercontent.com/u/66828879?s=64&amp;v=4" width="32" height="32" alt="@Shrirampareek888">
+<!--   <img class="d-block avatar-user" src="https://avatars.githubusercontent.com/u/66828879?s=64&amp;v=4" width="32" height="32" alt="@Shrirampareek888"> -->
 </a>
 <br>
 
