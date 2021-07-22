@@ -3,16 +3,11 @@
 > This is a flask based dashboard application for version and information checking of deployments made via jenkins pipelines. It is used as a maintanence tool for CI/CD pipelines specifically for java based applications. 
 
 ## Table of Contents
-* [General Info](#general-information)
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Usage](#usage)
 * [Contributors](#contributors)
-
-
-## General Information
-
 
 
 ## Technologies Used
