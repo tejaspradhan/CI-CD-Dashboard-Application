@@ -43,6 +43,7 @@ def not_found(e):
 @app.route('/')
 def dashboard():
     try:
+        all_vm_status()
         return render_template("index.html", text="Please Select Project To Display Status", pipelines=PIPELINES, all_status=ALL_VM_STATUS)
     except:
         return render_template("error.html", status=500)
@@ -95,5 +96,4 @@ def error():
 
 if __name__ == '__main__':
     pipelines()
-    all_vm_status()
     app.run(debug=True)
