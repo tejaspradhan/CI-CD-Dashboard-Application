@@ -203,7 +203,7 @@
                     <div class="body-card-body pt-0">
                         <div class="widget-49">
                             <div class="widget-49-title-wrapper">
-                                {%if version_info[version][-2]==1%}
+                                {%if version_info[version][-2]==1 and version_info[version][-1]=="UP" %}
                                 <div class="widget-49-date-primary" style="background-color:lightgreen;">
                                     <i class="fa fa-check" aria-hidden="true"></i>
                                 </div>
@@ -219,7 +219,12 @@
                             </div>
                             <ul class="widget-49-meeting-points">
                                 <li class="widget-49-meeting-item"><span>Build Timestamp :<b>{{version_info[version][2]}}</b> </span></li>
-                                <li class="widget-49-meeting-item"><span>Version :<b>{{version_info[version][3]}}</b></span></li>
+                                <li class="widget-49-meeting-item"><span>Version :<b>{{version_info[version][3]}}</b>
+                                    {%if version_info[version][-2]==1%}
+                                    <i class="fa fa-check fa-lg p-1" aria-hidden="true" style="color: green;" ></i></span></li>
+                                    {% else %}
+                                    <i class="fa fa-times fa-lg p-1" aria-hidden="true" style="color: red;"></i></span></li>
+                                    {% endif %}
                                 <li class="widget-49-meeting-item"><span>Group ID : <b>{{version_info[version][4]}}</b></span></li>
                                 <li class="widget-49-meeting-item"><span>Artifact ID : <b>{{version_info[version][5]}}</b></span></li>
                             </ul>
