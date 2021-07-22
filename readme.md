@@ -1,7 +1,6 @@
 # CI-CD Dashboard Application
 
-> This is a flask based dashboard application for version and information checking of deployments made via jenkins pipelines. It is used as a maintanence tool for CI/CD pipelines specifically for java based applications 
-<!-- > Live demo [_here_](https://www.example.com). If you have the project hosted somewhere, include the link here. -->
+> This is a flask based dashboard application for version and information checking of deployments made via jenkins pipelines. It is used as a maintanence tool for CI/CD pipelines specifically for java based applications. 
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -10,12 +9,10 @@
 * [Screenshots](#screenshots)
 * [Usage](#usage)
 * [Contributors](#contributors)
-<!-- * [License](#license) -->
 
 
 ## General Information
 
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 
 ## Technologies Used
@@ -27,10 +24,15 @@
 
 
 ## Features
+1. Deployment Version Reporting 
+2. Application monitoring Information
+3. Configuration and Integration with Spring Boot Admin
+4. Health Check Information Reporting
+5. Integration with Liquibase for applications with Database
 
-
+<br>
+<br>
 ## Screenshots
-<!-- If you have screenshots you'd like to share, include them here. -->
 <br>
 <img src="./Screenshots/Screenshot1.jpeg">
 <br>
@@ -42,11 +44,6 @@
 ## Usage
 - Start the dashboard by `python app.py` 
 
-
-## Project Status
-Project is: _In progress_ 
-
-
 <br>
 <br>
 
@@ -56,12 +53,6 @@ Project is: _In progress_
 
 <a href="https://github.com/tejaspradhan/CI-CD-Dashboard-Application/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=tejaspradhan/CI-CD-Dashboard-Application"/>
-<!--   <img class="d-block avatar-user" src="https://avatars.githubusercontent.com/u/66828879?s=64&amp;v=4" width="32" height="32" alt="@Shrirampareek888"> -->
 </a>
 <br>
 
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
