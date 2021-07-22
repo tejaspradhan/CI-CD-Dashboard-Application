@@ -8,10 +8,8 @@
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Screenshots](#screenshots)
-* [Setup](#setup)
 * [Usage](#usage)
-* [Project Status](#project-status)
-* [Contact](#contact)
+* [Contributors](#contributors)
 <!-- * [License](#license) -->
 
 
