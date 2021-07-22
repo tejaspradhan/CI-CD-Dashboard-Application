@@ -33,6 +33,9 @@
 
 ## Screenshots
 <!-- If you have screenshots you'd like to share, include them here. -->
+<img src="./Screenshots/Screenshot1.jpeg">
+<img src="./Screenshots/Screenshot2.jpeg">
+<img src="./Screenshots/Screenshot3.jpeg">
 
 
 ## Usage
