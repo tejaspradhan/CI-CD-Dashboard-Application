@@ -39,7 +39,8 @@
 
 
 ## Usage
-- Start the dashboard by `python app.py` 
+- Start the dashboard by `python app.py`
+- Service will run on `Port:5000` of server 
 
 <br>
 <br>
