@@ -28,6 +28,7 @@ def pipelines():
 
 def all_vm_status():
     global ALL_VM_STATUS
+    ALL_VM_STATUS.clear()
     f = open('../Health_Check/logfile.txt', 'r')
     content = f.read().split("\n")
     for x in content:
